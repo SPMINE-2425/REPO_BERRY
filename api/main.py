@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import pandas as pd
 import re
-from api.utils import jugadores_info, goals_info, goals_by_country,goles_por_equipo, top_goleadores
+from api.utils import jugadores_info, goals_info, goals_by_country, goles_por_equipo, top_goleadores
 
 
 # Crear la instancia de FastAPI
