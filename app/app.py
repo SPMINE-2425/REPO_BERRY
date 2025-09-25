@@ -27,7 +27,7 @@ with st.form("formulario"):
 
         # Definir la URL del endpoint de la API
         # PENDIENTE MODIFICAR
-end_point_url = 'http://localhost:5000/prediccion'
+end_point_url = 'http://localhost:8000/prediccion'
 
 # Realizar predicción
 if submit_button:

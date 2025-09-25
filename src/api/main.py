@@ -49,6 +49,6 @@ def read_root():
 # Recibe los datos y devuelve la predicción
 @app.post("/prediccion/")
 def predict_churn(item: ChurnData):
-    X_new = pd.DataFrame([item.dict()])
+    X_new = pd.DataFrame([item.dict()]) 
     prediction = modelo_cargado.predict(X_new)
-    return {'prediction': prediction}
+    return {'prediction': prediction.tolist()}
