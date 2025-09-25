@@ -6,6 +6,7 @@ import joblib
 from fastapi import FastAPI
 from pydantic import BaseModel
 import uvicorn
+import os #<-- incluido para manejar la ruta de acuerdo con la estructura que dió el profe
 
 # Crear la aplicación FastAPI
 app = FastAPI()
@@ -28,9 +29,12 @@ class ChurnData(BaseModel):
     DUR_INTERRUPCIONES: int
     SUSCRIP_STREAMING: str
 
-# Cargar el modelo
-modelo_cargado= joblib.load("../data/Processed/pipeline.pkl")
+# Indicar la ruta de forma dinámica usando la ubicación del archivo actual (__file__)
+ruta_actual = os.path.dirname(os.path.abspath(__file__))
+ruta_modelo = os.path.join(ruta_actual, "..", "..", "data", "Processed", "pipeline.pkl")
 
+# Cargar el modelo
+modelo_cargado = joblib.load(ruta_modelo)
 
 # Decoradores/endpoints:
 
@@ -48,4 +52,3 @@ def predict_churn(item: ChurnData):
     X_new = pd.DataFrame([item.dict()])
     prediction = modelo_cargado.predict(X_new)
     return {'prediction': prediction}
-
